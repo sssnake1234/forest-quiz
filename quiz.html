@@ -83,7 +83,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,"PingFang TC","Noto Sans TC","
 .axis{background:#fff;border:1.5px solid #e6efe4;border-radius:14px;padding:11px 13px;display:flex;flex-direction:column;gap:7px}
 .axis .ah{display:flex;align-items:center;justify-content:space-between;font-weight:800;font-size:13.5px}
 .axis .tag{font-size:11px;font-weight:800;padding:3px 9px;border-radius:99px}
-.tag.hi{background:#fde6c8;color:#b4622a}.tag.lo{background:#e2f0d6;color:#3f7a3a}
+.tag.hi{background:#fde2e2;color:#c0392b}.tag.mid{background:#fdeecb;color:#b4791a}.tag.lo{background:#e3f1d8;color:#3f8b46}
 .bar{height:7px;border-radius:99px;background:#eef3e6;overflow:hidden}
 .bar>i{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,#8fc97e,#3fae63)}
 .cta{display:flex;flex-direction:column;gap:11px;margin-top:8px;padding:0 20px}
@@ -346,8 +346,8 @@ function showResult(){const {key,high}=resolveKey();const animal=ANIMALS[key];
   $('calc').classList.add('hidden');$('result').classList.remove('hidden');setBg(SCENE_IMG.result);
   drawCard(key,animal,high);$('anStory').textContent=animal.story;$('anTips').textContent=animal.tips;
   const maxv=Math.max(6,...ORDER.map(a=>totals[a]));
-  $('axes').innerHTML=ORDER.map(a=>{const hi=totals[a]>=HIGH,pct=Math.round(totals[a]/maxv*100);
-    return '<div class="axis"><div class="ah"><span>'+AXES[a].icon+' '+AXES[a].name+'</span><span class="tag '+(hi?'hi':'lo')+'">'+(hi?'明顯':'平穩')+'</span></div><div class="bar"><i style="width:'+pct+'%"></i></div><div style="font-size:11px;color:#8a9c7a;line-height:1.5">'+AXES[a].blurb+'</div></div>';}).join("");
+  $('axes').innerHTML=ORDER.map(a=>{const v=totals[a],lvl=v>=8?'hi':(v>=HIGH?'mid':'lo'),lbl=lvl==='hi'?'明顯':(lvl==='mid'?'中等':'平穩'),barcol=lvl==='hi'?'#ef6f5a,#d23b2a':(lvl==='mid'?'#f2c14e,#e0a52e':'#8fc97e,#3fae63'),pct=Math.round(v/maxv*100);
+    return '<div class="axis"><div class="ah"><span>'+AXES[a].icon+' '+AXES[a].name+'</span><span class="tag '+lvl+'">'+lbl+'</span></div><div class="bar"><i style="width:'+pct+'%;background:linear-gradient(90deg,'+barcol+')"></i></div><div style="font-size:11px;color:#8a9c7a;line-height:1.5">'+AXES[a].blurb+'</div></div>';}).join("");
   window.scrollTo({top:0,behavior:'smooth'});}
 
 /* ===== 結果圖卡（明亮森林感 + 大 emoji） ===== */
