@@ -346,7 +346,7 @@ function showResult(){const {key,high}=resolveKey();const animal=ANIMALS[key];
   $('calc').classList.add('hidden');$('result').classList.remove('hidden');setBg(SCENE_IMG.result);
   drawCard(key,animal,high);buildCardImage();$('anStory').textContent=animal.story;$('anTips').textContent=animal.tips;
   const maxv=Math.max(6,...ORDER.map(a=>totals[a]));
-  $('axes').innerHTML=ORDER.map(a=>{const v=totals[a],lvl=v>=8?'hi':(v>=HIGH?'mid':'lo'),lbl=lvl==='hi'?'明顯':(lvl==='mid'?'中等':'平穩'),barcol=lvl==='hi'?'#ef6f5a,#d23b2a':(lvl==='mid'?'#f2c14e,#e0a52e':'#8fc97e,#3fae63'),pct=Math.round(v/maxv*100);
+  $('axes').innerHTML=ORDER.map(a=>{const v=totals[a],lvl=v>=8?'hi':(v>=HIGH?'mid':'lo'),lbl=lvl==='hi'?'明顯':(lvl==='mid'?'中等':'平穩'),barcol=lvl==='hi'?'#ef6f5a,#d23b2a':(lvl==='mid'?'#f2c14e,#e0a52e':'#8fc97e,#3fae63'),pct=Math.max(8,Math.min(100,Math.round(v/12*100)));
     return '<div class="axis"><div class="ah"><span>'+AXES[a].icon+' '+AXES[a].name+'</span><span class="tag '+lvl+'">'+lbl+'</span></div><div class="bar"><i style="width:'+pct+'%;background:linear-gradient(90deg,'+barcol+')"></i></div><div style="font-size:11px;color:#8a9c7a;line-height:1.5">'+AXES[a].blurb+'</div></div>';}).join("");
   window.scrollTo({top:0,behavior:'smooth'});}
 
