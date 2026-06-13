@@ -405,8 +405,9 @@ function buildCardImage(){
   img.src=svg64;
 }
 async function downloadCard(){
-  // 手機：叫出原生分享/儲存面板（可存到相簿、直接傳 IG/LINE）
-  if(CARD_FILE && navigator.canShare && navigator.canShare({files:[CARD_FILE]})){
+  const isMobile=(navigator.userAgentData&&navigator.userAgentData.mobile===true)|| /Mobi|Android|iPhone|iPod|iPad/i.test(navigator.userAgent);
+  // 手機/觸控：叫出原生分享面板（可存相簿、傳 IG/LINE）；電腦：直接下載
+  if(isMobile && CARD_FILE && navigator.canShare && navigator.canShare({files:[CARD_FILE]})){
     try{ await navigator.share({files:[CARD_FILE], title:"我的森林分身", text:"我的森林分身："+CURRENT_NAME+"！來測測你是哪一隻 🌿"}); return; }
     catch(e){ if(e && e.name==='AbortError') return; }
   }
