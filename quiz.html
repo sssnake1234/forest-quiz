@@ -344,7 +344,7 @@ function resolveKey(){const high=ORDER.filter(a=>totals[a]>=HIGH).sort((a,b)=>to
   const k=ORDER.filter(a=>high.includes(a)).join("");return{key:(ANIMALS[k]?k:high[0]),high};}
 function showResult(){const {key,high}=resolveKey();const animal=ANIMALS[key];
   $('calc').classList.add('hidden');$('result').classList.remove('hidden');setBg(SCENE_IMG.result);
-  drawCard(key,animal,high);$('anStory').textContent=animal.story;$('anTips').textContent=animal.tips;
+  drawCard(key,animal,high);buildCardImage();$('anStory').textContent=animal.story;$('anTips').textContent=animal.tips;
   const maxv=Math.max(6,...ORDER.map(a=>totals[a]));
   $('axes').innerHTML=ORDER.map(a=>{const v=totals[a],lvl=v>=8?'hi':(v>=HIGH?'mid':'lo'),lbl=lvl==='hi'?'明顯':(lvl==='mid'?'中等':'平穩'),barcol=lvl==='hi'?'#ef6f5a,#d23b2a':(lvl==='mid'?'#f2c14e,#e0a52e':'#8fc97e,#3fae63'),pct=Math.round(v/maxv*100);
     return '<div class="axis"><div class="ah"><span>'+AXES[a].icon+' '+AXES[a].name+'</span><span class="tag '+lvl+'">'+lbl+'</span></div><div class="bar"><i style="width:'+pct+'%;background:linear-gradient(90deg,'+barcol+')"></i></div><div style="font-size:11px;color:#8a9c7a;line-height:1.5">'+AXES[a].blurb+'</div></div>';}).join("");
@@ -391,15 +391,32 @@ function badgeRow(high){
 }
 
 /* ===== 下載 PNG ===== */
-function downloadCard(){
+let CARD_DATAURL=null, CARD_FILE=null;
+function buildCardImage(){
+  CARD_DATAURL=null; CARD_FILE=null;
   const xml=new XMLSerializer().serializeToString($('card'));
   const svg64='data:image/svg+xml;base64,'+btoa(unescape(encodeURIComponent(xml)));
   const img=new Image();
-  img.onload=()=>{const c=document.createElement('canvas');c.width=1080;c.height=1350;
-    const ctx=c.getContext('2d');ctx.drawImage(img,0,0,1080,1350);
-    try{c.toBlob(b=>{const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download="森林分身_"+CURRENT_NAME+".png";a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1500);},'image/png');}
-    catch(e){const w=window.open();if(w)w.document.write('<img src="'+svg64+'" style="width:100%">');}};
+  img.onload=()=>{try{const c=document.createElement('canvas');c.width=1080;c.height=1350;
+    c.getContext('2d').drawImage(img,0,0,1080,1350);
+    CARD_DATAURL=c.toDataURL('image/png');
+    c.toBlob(b=>{if(b){try{CARD_FILE=new File([b],"森林分身_"+CURRENT_NAME+".png",{type:"image/png"});}catch(e){}}},'image/png');
+  }catch(e){}};
   img.src=svg64;
+}
+async function downloadCard(){
+  // 手機：叫出原生分享/儲存面板（可存到相簿、直接傳 IG/LINE）
+  if(CARD_FILE && navigator.canShare && navigator.canShare({files:[CARD_FILE]})){
+    try{ await navigator.share({files:[CARD_FILE], title:"我的森林分身", text:"我的森林分身："+CURRENT_NAME+"！來測測你是哪一隻 🌿"}); return; }
+    catch(e){ if(e && e.name==='AbortError') return; }
+  }
+  // 電腦：直接下載 PNG
+  if(CARD_DATAURL){
+    const a=document.createElement('a'); a.href=CARD_DATAURL; a.download="森林分身_"+CURRENT_NAME+".png";
+    document.body.appendChild(a); a.click(); a.remove(); return;
+  }
+  // 圖還沒備好 → 現做再重試一次
+  buildCardImage(); setTimeout(downloadCard,500);
 }
 function restart(){totals={N:0,S:0,L:0,G:0};answers=[];cur=0;$('result').classList.add('hidden');$('intro').classList.remove('hidden');setBg(SCENE_IMG.intro);window.scrollTo({top:0});}
 
