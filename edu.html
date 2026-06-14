@@ -49,8 +49,9 @@ sup{font-size:.62em;font-weight:700;color:var(--p-500);vertical-align:super}
 .hero .b1{background:#fff;color:var(--p-700)}
 .hero .b2{background:rgba(255,255,255,.14);color:#fff;border:1px solid rgba(255,255,255,.4)}
 .hero a.bbtn{text-decoration:none;font-weight:800;font-size:15px;padding:13px 24px;border-radius:999px;display:inline-flex;align-items:center;gap:8px}
-.hero .figure{display:flex;justify-content:center}
-@media(max-width:820px){.hero .wrap{grid-template-columns:1fr;padding:44px 22px 48px}.hero h1{font-size:30px}.hero .figure{order:-1}}
+.hero .figure{display:flex;align-items:center;justify-content:center}
+.hero .figure svg{width:100%;max-width:380px;height:auto}
+@media(max-width:820px){.hero .wrap{grid-template-columns:1fr;padding:44px 22px 48px}.hero h1{font-size:30px}.hero .figure{order:-1}.hero .figure svg{max-width:300px}}
 
 /* ---- section ---- */
 section{padding:66px 0;scroll-margin-top:64px}
@@ -197,13 +198,11 @@ footer a{color:#d8c7fb}
 </head>
 <body>
 
-<!-- 上方資訊列 -->
 <div class="topbar"><div class="wrap">
-  <span>🩺 <b>衛教資訊專區</b>　Type 2 Inflammation</span>
+  <span>🩺 <b>衛教資訊專區</b> Type 2 Inflammation</span>
   <span>內容僅供衛教參考，不可取代專業醫療診斷</span>
 </div></div>
 
-<!-- 導覽 -->
 <nav class="nav"><div class="wrap">
   <span class="brand"><span class="dot">T2</span>第二型發炎衛教</span>
   <div class="navlinks">
@@ -218,7 +217,6 @@ footer a{color:#d8c7fb}
   <a href="#visit" class="cta">就醫指引 →</a>
 </div></nav>
 
-<!-- HERO -->
 <header class="hero"><div class="wrap">
   <div>
     <span class="tag">過敏 · 氣喘 · 異位性皮膚炎 · 鼻息肉 · 嗜伊紅性食道炎</span>
@@ -232,34 +230,29 @@ footer a{color:#d8c7fb}
     </div>
   </div>
   <div class="figure">
-    <!-- 人體與器官示意 -->
     <svg width="300" height="340" viewBox="0 0 300 340" xmlns="http://www.w3.org/2000/svg" aria-label="第二型發炎影響的器官示意圖">
       <defs>
         <linearGradient id="bd" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#d8c7fb"/><stop offset="1" stop-color="#8b5cf6"/></linearGradient>
       </defs>
       <circle cx="150" cy="170" r="138" fill="#ffffff" opacity="0.08"/>
       <circle cx="150" cy="170" r="104" fill="#ffffff" opacity="0.07"/>
-      <!-- body -->
       <circle cx="150" cy="92" r="32" fill="url(#bd)"/>
       <path d="M110 134 q40 -18 80 0 l10 104 q-50 18 -100 0 z" fill="url(#bd)"/>
       <rect x="128" y="234" width="17" height="70" rx="8" fill="url(#bd)"/>
       <rect x="155" y="234" width="17" height="70" rx="8" fill="url(#bd)"/>
-      <!-- node dots -->
-      <g fill="#fff"><circle cx="150" cy="92" r="6"/><circle cx="128" cy="162" r="5"/><circle cx="172" cy="162" r="5"/><circle cx="150" cy="200" r="5"/></g>
-      <!-- connectors -->
+      <g fill="#fff"><circle cx="150" cy="94" r="6"/><circle cx="150" cy="145" r="5.5"/><circle cx="105" cy="186" r="5.5"/><circle cx="150" cy="175" r="5.5"/></g>
       <g stroke="#ffffff" stroke-width="1.3" opacity="0.5">
-        <line x1="46" y1="80" x2="124" y2="90"/><line x1="254" y1="80" x2="176" y2="90"/>
-        <line x1="46" y1="206" x2="124" y2="162"/><line x1="254" y1="206" x2="176" y2="162"/>
+        <line x1="84" y1="86" x2="144" y2="94"/><line x1="234" y1="86" x2="155.5" y2="145"/>
+        <line x1="50" y1="206" x2="99.5" y2="186"/><line x1="230" y1="206" x2="155.5" y2="175"/>
       </g>
       <g font-family="-apple-system,sans-serif" font-size="12.5" font-weight="800" fill="#fff">
-        <text x="14" y="76">鼻 · 鼻竇</text><text x="208" y="76">呼吸道</text>
-        <text x="20" y="210">皮膚</text><text x="214" y="210">食道</text>
+        <text x="12" y="90">鼻 · 鼻竇</text><text x="240" y="90">食道</text>
+        <text x="18" y="210">皮膚</text><text x="236" y="210">呼吸道</text>
       </g>
     </svg>
   </div>
 </div></header>
 
-<!-- 什麼是第二型發炎 -->
 <section id="about">
   <div class="wrap">
     <div class="kicker-row"><span class="eyebrow">What is Type 2 Inflammation</span></div>
@@ -281,20 +274,16 @@ footer a{color:#d8c7fb}
       </div>
     </div>
 
-    <!-- 機轉卡通示意 -->
     <div class="figpanel">
       <p class="figtitle">第二型發炎是怎麼啟動的？（示意）</p>
       <svg viewBox="0 0 620 220" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="第二型發炎機轉：過敏原刺激Th2細胞釋放IL-4、IL-5、IL-13，活化嗜酸性球與IgE，造成多器官發炎">
-        <!-- 1 trigger -->
         <g transform="translate(58,86)">
           <circle r="40" fill="#eadcff"/><circle r="40" fill="none" stroke="#a855f7" stroke-width="2.5"/>
           <text x="0" y="6" text-anchor="middle" font-size="30">🌼</text>
         </g>
         <text x="58" y="156" text-anchor="middle" font-size="12.5" font-weight="800" fill="#5b21b6">過敏原 / 刺激</text>
         <text x="58" y="173" text-anchor="middle" font-size="11" fill="#7a6f8c">塵蟎·花粉·屏障受損</text>
-        <!-- arrow -->
         <polygon points="108,80 130,90 108,100" fill="#c4a6f0"/>
-        <!-- 2 Th2 cell mascot -->
         <g transform="translate(192,86)">
           <circle r="44" fill="#c9b3f4"/><circle r="44" fill="none" stroke="#7c3aed" stroke-width="3"/>
           <circle cx="-22" cy="6" r="6" fill="#f3a0c0" opacity=".75"/><circle cx="22" cy="6" r="6" fill="#f3a0c0" opacity=".75"/>
@@ -303,9 +292,7 @@ footer a{color:#d8c7fb}
         </g>
         <text x="192" y="156" text-anchor="middle" font-size="12.5" font-weight="800" fill="#5b21b6">Th2 / ILC2</text>
         <text x="192" y="173" text-anchor="middle" font-size="11" fill="#7a6f8c">免疫細胞被活化</text>
-        <!-- arrow -->
         <polygon points="244,80 266,90 244,100" fill="#c4a6f0"/>
-        <!-- 3 cytokines -->
         <g font-size="13" font-weight="800" text-anchor="middle">
           <rect x="288" y="50" width="92" height="26" rx="13" fill="#fde9b0" stroke="#f59e0b" stroke-width="2"/><text x="334" y="68" fill="#a86510">IL-4</text>
           <rect x="288" y="80" width="92" height="26" rx="13" fill="#cdeeea" stroke="#0e9488" stroke-width="2"/><text x="334" y="98" fill="#0b6e64">IL-5</text>
@@ -313,20 +300,16 @@ footer a{color:#d8c7fb}
         </g>
         <text x="334" y="156" text-anchor="middle" font-size="12.5" font-weight="800" fill="#5b21b6">發炎訊號</text>
         <text x="334" y="173" text-anchor="middle" font-size="11" fill="#7a6f8c">核心細胞激素</text>
-        <!-- arrow -->
         <polygon points="392,80 414,90 392,100" fill="#c4a6f0"/>
-        <!-- 4 effectors: eosinophil + IgE -->
         <g transform="translate(470,90)">
           <circle r="34" fill="#f7b4c4"/><circle r="34" fill="none" stroke="#e35d7b" stroke-width="2.5"/>
           <g fill="#d23b5e"><circle cx="-12" cy="-10" r="3.4"/><circle cx="8" cy="-12" r="3.4"/><circle cx="-6" cy="10" r="3.4"/><circle cx="12" cy="8" r="3.4"/><circle cx="0" cy="0" r="3.4"/></g>
           <circle cx="-11" cy="-2" r="4" fill="#7a1530"/><circle cx="11" cy="-2" r="4" fill="#7a1530"/>
           <path d="M-9 9 q9 8 18 0" stroke="#7a1530" stroke-width="2.5" fill="none" stroke-linecap="round"/>
-          <!-- IgE antibody -->
           <g transform="translate(40,-30)" stroke="#0e9488" stroke-width="4" stroke-linecap="round" fill="none"><path d="M0 16 V4"/><path d="M0 4 L-9 -6"/><path d="M0 4 L9 -6"/></g>
         </g>
         <text x="478" y="156" text-anchor="middle" font-size="12.5" font-weight="800" fill="#5b21b6">嗜酸性球 · IgE</text>
         <text x="478" y="173" text-anchor="middle" font-size="11" fill="#7a6f8c">持續發炎、分泌黏液</text>
-        <!-- symptoms row bottom -->
         <text x="478" y="202" text-anchor="middle" font-size="20">👃 🫁 🖐️ 🍽️</text>
       </svg>
       <p class="figcap">一條共通路徑被啟動後，會在鼻、肺、皮膚、食道等不同「出口」同時引發發炎，這就是為什麼常常「好幾種病一起來」。</p>
@@ -334,7 +317,6 @@ footer a{color:#d8c7fb}
   </div>
 </section>
 
-<!-- 全身影響 -->
 <section id="body" class="tint">
   <div class="wrap">
     <span class="eyebrow">Where it shows up</span>
@@ -401,7 +383,6 @@ footer a{color:#d8c7fb}
   </div>
 </section>
 
-<!-- 相關疾病 -->
 <section id="diseases">
   <div class="wrap">
     <span class="eyebrow">Related conditions</span>
@@ -427,7 +408,6 @@ footer a{color:#d8c7fb}
   </div>
 </section>
 
-<!-- 共病機轉 -->
 <section id="cause" class="tint">
   <div class="wrap">
     <span class="eyebrow">Why comorbid</span>
@@ -446,7 +426,6 @@ footer a{color:#d8c7fb}
       <p class="cap">同一個源頭、多處表現——這也是為什麼「整體評估、整合照護」往往比各看各的更有效。</p>
     </div>
 
-    <!-- 過敏進行曲卡通 -->
     <div class="figpanel">
       <p class="figtitle">過敏進行曲（Atopic March）——症狀常隨年齡接連登場</p>
       <div class="march">
@@ -492,14 +471,12 @@ footer a{color:#d8c7fb}
   </div>
 </section>
 
-<!-- 如何診斷 -->
 <section id="diagnosis">
   <div class="wrap">
     <span class="eyebrow">How it's diagnosed</span>
     <h2 class="sh">第二型發炎相關疾病怎麼診斷？</h2>
     <p class="lead">沒有單一檢查能一次斷定，醫師通常會綜合下列方式評估，並依受影響的器官安排對應檢查。</p>
 
-    <!-- 診斷方式卡通圖示 -->
     <div class="dxstrip">
       <div class="dxitem">
         <svg viewBox="0 0 64 64" aria-label="病史">
@@ -570,7 +547,6 @@ footer a{color:#d8c7fb}
   </div>
 </section>
 
-<!-- 治療選擇 -->
 <section id="treatment" class="tint">
   <div class="wrap">
     <span class="eyebrow">Treatment landscape</span>
@@ -591,7 +567,6 @@ footer a{color:#d8c7fb}
   </div>
 </section>
 
-<!-- 日常照護 -->
 <section id="care">
   <div class="wrap">
     <span class="eyebrow">Daily care</span>
@@ -607,7 +582,6 @@ footer a{color:#d8c7fb}
   </div>
 </section>
 
-<!-- 就醫指引 -->
 <section id="visit" class="tint">
   <div class="wrap">
     <span class="eyebrow">When & where to seek care</span>
@@ -641,7 +615,6 @@ footer a{color:#d8c7fb}
   </div>
 </section>
 
-<!-- 免責 + 參考文獻 -->
 <div class="refs"><div class="wrap">
   <div class="disclaimer">
     <b>免責聲明：</b>本網頁為衛教資訊，目的在促進大眾對第二型發炎及相關過敏、氣喘、皮膚與消化道疾病的認識，<b>不能取代專業醫師的診斷、檢查與治療建議</b>，亦不針對任何特定藥品做推薦。個人病情請以醫師面對面評估為準；若症狀持續或惡化，請儘早就醫。
@@ -655,7 +628,7 @@ footer a{color:#d8c7fb}
 </div></div>
 
 <footer>
-  第二型發炎衛教專區 · 本內容為衛教用途，非醫療診斷　|　<a href="quiz.html">回到森林小測驗</a><br>
+  第二型發炎衛教專區 · 本內容為衛教用途，非醫療診斷 | <a href="quiz.html">回到森林小測驗</a><br>
   如有身體不適，請諮詢專業醫師或就近醫療院所。
 </footer>
 
